@@ -1,0 +1,63 @@
+*,::after,::before {
+    box-sizing: border-box;
+    /* outline: 1px solid red; */
+    margin: 0;
+}
+main{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 174, 127, 0.548);
+}
+.cal-structor ,.output{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(145, 104, 184 , 0.2);
+}
+.cal-structor{
+    border: 5px solid rgb(247, 0, 255);
+    border-radius: 10px;
+}
+.output {
+    justify-content:space-around;
+    height: 90px;
+    width: 310px;
+    background-color: rgba(99, 136, 238, 0.562);
+}
+.viewport{
+    height: 30px;
+    width: 290px;
+}
+.key-section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    height: 400px;
+    width: 310px;
+    gap: 10px ;
+    background-color: rgba(229, 255, 0, 0.219);
+}
+.key {
+    text-align: center;
+    height: 50px;
+    padding: 5px 3px;
+    border-radius: 12px;
+    font-weight: 900;
+    flex: 0 0 60px;
+}
+.clear {
+    font-size: large;
+    font-weight: 900;
+    color: aliceblue;
+    background-color: rgba(255, 0, 0, 0.637);
+}
+.result {
+    font-size: large;
+    font-weight: 900;
+    color: aliceblue;
+    background-color: rgba(9, 255, 0, 0.637);
+}
