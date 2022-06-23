@@ -30,6 +30,7 @@ main{
 .viewport{
     height: 30px;
     width: 290px;
+    
 }
 .key-section{
     display: flex;
