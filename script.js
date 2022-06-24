@@ -1,62 +1,112 @@
-// const buttons = document.querySelectorAll("button");
-// buttons.forEach(button => {
-//      button.addEventlistener("click", (e) => console.log (e.target.textContent))
+class Calculator{
+    constructor(previousOperandText,currentOperandText) {
+        this.previousOperandText = previousOperandText
+        this.currentOperandText = currentOperandText
+        this.clear()
+    }
+   
+     clear() {
+        this.currentOperand = ''
+        this.previousOperand = ''
+        this.computation = ''
+        this.operator = undefined
+      }
+      delete(){
+        this.currentOperand = this.currentOperand.toString().slice(0,-1)
+      }
+     appendNumber(number) {
+        if(number === '.' && this.currentOperand.includes('.')) return
+        this.currentOperand = this.currentOperand.toString() + number.toString()
+    }
+     chooseOperand(operator) {
+        if(this.currentOperand === '') return
+        if(this.previousOperand !== ''){
+            this.operate()
 
-// });
-console.log ("test okey")
-const textScreen = document.querySelector('.text-screen')
-const buttons = document.querySelectorAll('button')
-console.log(buttons)
-buttons.forEach(button => {
-    button.addEventListener('click' , () => {
-        console.log(button.textContent)
-        textScreen.textContent += button.textContent
-    })
-})
-const numbers = document.querySelectorAll('.numbers')
-console.log(numbers)
-const operators = document.querySelectorAll('.operators')
-console.log(operators)
-const clearButton = document.querySelector('.clear')
-clearButton.addEventListener('click', clear)
+        }
+        this.operator = operator
+       
+       if(this.computation !== this.currentOperand || this.computation == ''){
+        this.previousOperand += this.currentOperand
+       }
+       this.computation = this.currentOperand
+        this.previousOperand += this.operator
+        this.currentOperand =''
+    }
+     updateDisplay() {
+        this.currentOperandText.textContent = this.currentOperand
+        this.previousOperandText.textContent = this.previousOperand
+    }
+     operate() {
+        let operation
+        const prev = parseFloat(this.computation)
+        const current = parseFloat(this.currentOperand)
+        if(isNaN(prev) || isNaN(current)) return
 
-function add(a,b) {
-    return a+b;
-}
-function subtract(a,b) {
-    return a-b;
-}
-function multiply(a,b) {
-    return a*b;
-}
-function divide(a,b) {
-    return a/b;
-}
-
-
-function operate(a,operator,b) {
-
-    switch (operator) {
-        case "+":
-            add()
-            break;
-        case "-":
-            subtract()    
-            break;
-        case "x" :
-            multiply()    
-            break;
-        case "/":
-            divide()    
-            break;
-    
-        default:
-            break;
+        switch (this.operator) {
+            case "+":
+                operation = prev + current
+                break;
+            case "-":
+                operation = prev - current
+                break;
+            case "x" :
+                operation = prev * current
+                break;
+            case "/":
+                operation = prev / current
+                break;
+        
+            default:
+                return;
+        }
+       this.previousOperand += this.currentOperand
+        this.currentOperand = operation
+        this.computation = operation
+        this.operator = undefined
+       
     }
 }
-function updateDisplay() {
-    
-}
-function clear() {
-  textScreen.textContent = ""
-}
+const numberButtons = document.querySelectorAll('[data-number]')
+console.log(numberButtons)
+const operatorButtons = document.querySelectorAll('[data-operator]')
+console.log(operatorButtons)
+const deleteButton = document.querySelector('.delete')
+console.log(deleteButton)
+const equalsButton = document.querySelector('.result')
+console.log(equalsButton)
+const clearButton = document.querySelector('.clear')
+// clearButton.addEventListener('click', clear)
+
+const previousOperandText = document.querySelector('[data-pre-operand]')
+console.log(previousOperandText)
+const currentOperandText = document.querySelector('[data-current-operand]')
+console.log(currentOperandText)
+
+
+const calculator = new Calculator(previousOperandText,currentOperandText)
+
+numberButtons.forEach(button => {
+    button.addEventListener('click' , () => {
+        calculator.appendNumber(button.textContent)
+        calculator.updateDisplay()
+    })
+})
+operatorButtons.forEach(button => {
+    button.addEventListener('click' , () => {
+    calculator.chooseOperand(button.textContent)
+    calculator.updateDisplay()
+    })
+})
+equalsButton.addEventListener('click', button => {
+    calculator.operate()
+    calculator.updateDisplay()
+})
+clearButton.addEventListener('click' , button =>{
+    calculator.clear()
+    calculator.updateDisplay()
+})
+deleteButton.addEventListener('click', button => {
+    calculator.delete()
+    calculator.updateDisplay()
+})

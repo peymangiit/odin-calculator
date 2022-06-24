@@ -12,29 +12,33 @@
     <main>
         <div class="cal-structor">
             <div class="output">
-                <div class="viewport text-screen"> 2 + 1</div>
-                <div class="viewport result-screen"> 3 </div>
+                <div data-pre-operand class="viewport text-screen"> </div>
+                <div data-current-operand class="viewport result-screen">  </div>
             </div>
             <div class="key-section">
-               <button class="key numbers">1</button>
-               <button class="key numbers">2</button>
-               <button class="key numbers">3</button>
-               <button class="key operators">x</button>
-               <button class="key numbers">4</button>
-               <button class="key numbers">5</button>
-               <button class="key numbers">6</button>
-               <button class="key operators">/</button>
-               <button class="key numbers">7</button>
-               <button class="key numbers">8</button>
-               <button class="key numbers">9</button>
-               <button class="key operators">+</button>
-               <button class="key clear">C</button>
-               <button class="key numbers">0</button>
-               <button class="key result">=</button>
-               <button class="key operators">-</button>
+               <button class="key clear span-two">AC</button>
+               <button class="key delete">del</button>
+               <button data-operator class="key operators">x</button>
+               <button data-number class="key numbers">7</button>
+               <button data-number class="key numbers">8</button>
+               <button data-number class="key numbers">9</button>
+               <button data-operator class="key operators">/</button>
+               <button data-number class="key numbers">4</button>
+               <button data-number class="key numbers">5</button>
+               <button data-number class="key numbers">6</button>
+               <button data-operator class="key operators">+</button>
+               <button data-number class="key numbers">1</button>
+               <button data-number class="key numbers">2</button>
+               <button data-number class="key numbers">3</button>
+               <button data-operator class="key operators">-</button>
+               <button data-number class="key numbers">.</button>
+               <button data-number class="key numbers">0</button>
+               <button class="key result span-two">=</button>
             </div>
         </div>
     </main>
-   
+   <footer>
+    <a href="https://www.theodinproject.com/lessons/foundations-calculator" target="_blank" rel="noopener noreferrer">The Odin Project</a><span>&copy;</span> <a href="https://github.com/peymangiit/odin-calculator.git" target="_blank" rel="noopener noreferrer">Source Code</a>
+   </footer>
 </body>
 </html>
